@@ -2,7 +2,7 @@
 
 _A simple math formula display for Jekyll sites_
 
-**This is under-development. I create this repo this for fun.**
+**This is under-development. I create this repo just for fun.**
 
 Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/jekyll/formula`. To experiment with that code, run `bin/console` for an interactive prompt.
 
