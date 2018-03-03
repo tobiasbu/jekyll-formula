@@ -1,18 +1,15 @@
 require_relative '../lib/jekyll-formula.rb'
 require_relative '../lib/jekyll-formula/grammar.rb'
 require_relative '../lib/jekyll-formula/base-module.rb'
+require 'spec_helper'
 
 include Jekyll::Formula
 
 describe Grammar do
-    def find_sym(key)
-      g = Grammar.new
-      g.find_symbol(key)
-    end
 
     describe "expressions" do
-        it "get symbol" do
-            result = find_sym("alpha")
+        it "find greek symbol" do
+            result = @grammar.find_greek("alpha")
             expect(result[:out]).to eq("\u03B1")
         end
     end

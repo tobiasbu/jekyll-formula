@@ -1,4 +1,6 @@
 require_relative 'node.rb'
+require_relative 'utils.rb'
+
 
 module Jekyll
   module Formula
@@ -26,21 +28,17 @@ module Jekyll
         # PARSER          
         #return parse_formula(text)
         #return "#{formated}";
-        puts "\n FORMULA: " + formated
+        puts "FORMULA: " + formated + "\n"
+        
         return parse_formula(formated)
       end
 
-      # Remove invalid characters
+      # Remove blank characters
       def erase_blank(str)
         it = 0
-        #len = 0
-        #st = str[len..-1]
-
         while it < str.length && str[it].ord <= 32 do
           it += 1
         end
-
-
         str = str[it..-1]
         return str
       end
@@ -49,23 +47,23 @@ module Jekyll
       def detect_exp(str)
         
         node = nil
-        exp = str.slice(/^[0-9]+/)
+        exp = str.slice!(/^[0-9]+/)
 
         if exp != nil # is digit
           node = Node.new(exp)
+          str = str.sub(/#{exp}/,"")
         else
           # check if is operator
-          exp = @grammar.find_operator(str[0])
-          if (exp != nil)
-            exp = exp[:out]
-            node = Node.new(exp, Type::OPERATOR)
-          end
+          exp = @grammar.search(str)
+          node = exp[1]
+          str = exp[0]
+          #if (exp != nil)
+          #  exp = exp[:out]
+          #  node = Node.new(exp, Type::OPERATOR)
+          #end
         end
 
-        if (exp != nil)
-          str = str.sub(/#{exp}/,"")
-          #puts "exp: " + exp + " | str: " + str
-        end
+
 
         return [str, node]
 

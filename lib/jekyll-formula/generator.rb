@@ -3,7 +3,9 @@ module Jekyll
 
         # Generate final output by given brush and nodes
       class Generator
-        def number(text)
+        def exec(nodes, brush)
+
+          
 
         end
       end
