@@ -7,6 +7,7 @@ module Jekyll
     # Your code goes here...
     def initialize(tag_name, text, tokens)
       @parser = Formula::Parser.new
+      @tag = tag_name;
     end
 
     def render(context)
